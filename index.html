@@ -580,6 +580,15 @@ render();
     ?`Precios en pesos chilenos: el precio principal es neto (sin IVA) y debajo se indica el IVA (${ivaPct()}) y el total. Precio de lista de lanzamiento en USD convertido al ${CONFIG.fx.source} de $${CONFIG.fx.rate.toLocaleString("es-CL",{minimumFractionDigits:2})} (${CONFIG.fx.date}). Son valores referenciales; el despacho desde ${CONFIG.shipping.origin} es ilustrativo. Imágenes de referencia obtenidas de internet.`
     :"Precios en dólares (USD): precio de lista de lanzamiento del fabricante según prensa y tiendas. Imágenes de referencia obtenidas de internet.";
 })();
+/* paso 4: cómo se compra, con los valores reales de CONFIG */
+(()=>{const sh=CONFIG.shipping,z=sh.zones,clp=CONFIG.currency==="CLP";
+  $("#steps").innerHTML=[
+   ["01","Elige y agrega","Mira la ficha de cada modelo, compáralos y súmalos al carrito. Puedes cambiar cantidades cuando quieras."],
+   ["02","Precio claro",clp?`Ves el precio neto y el IVA de ${ivaPct()} por separado. El total del carrito ya incluye el IVA.`:"Ves el precio de lista en dólares."],
+   ["03","Despacho desde "+sh.origin,`Región Metropolitana ${money(z.rm)}, zona centro ${money(z.centro)} y resto del país ${money(z.extremo)}. Gratis sobre ${money(sh.freeOver)} con IVA. Tarifas ilustrativas.`],
+   ["04","Pago en tres pasos","Datos, despacho y pago: Webpay, Mercado Pago o transferencia. En esta demostración no se cobra nada."]
+  ].map(s=>`<div class="step"><i>${s[0]}</i><h3>${s[1]}</h3><p>${s[2]}</p></div>`).join("");
+})();
 /* ================= checkout ================= */
 const REGIONES=["Arica y Parinacota","Tarapacá","Antofagasta","Atacama","Coquimbo","Valparaíso","Metropolitana de Santiago","O'Higgins","Maule","Ñuble","Biobío","La Araucanía","Los Ríos","Los Lagos","Aysén","Magallanes y la Antártica Chilena"];
 const esc=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
