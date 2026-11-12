@@ -112,6 +112,25 @@ button{font:inherit;cursor:pointer}
 .eyebrow{font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin-bottom:12px}
 .sec h2.title{font-family:var(--display);font-size:clamp(32px,4.6vw,52px);letter-spacing:-.04em;line-height:1.08;font-weight:600;max-width:16ch}
 .sec .lead{margin-top:16px;font-size:20px;color:var(--grey);max-width:40ch}
+#guia{padding-bottom:0}#compra{padding-bottom:0}.note{padding-bottom:0}
+.needs{margin-top:40px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.need{text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:20px 18px;display:flex;flex-direction:column;gap:6px;color:var(--navy);transition:border-color .2s,transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.need:hover{border-color:var(--sky);transform:translateY(-3px);box-shadow:0 14px 28px -16px rgba(0,0,42,.4)}
+.need:focus-visible{outline:2px solid var(--sky);outline-offset:3px}
+.need b{font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+.need span{font-size:14px;color:var(--grey)}
+.need em{font-style:normal;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-top:auto;padding-top:10px}
+.chip{margin-top:28px;display:inline-flex;align-items:center;gap:12px;font-size:14px;background:var(--tint);border:1px solid var(--sky);border-radius:999px;padding:6px 8px 6px 16px}
+.chip[hidden]{display:none}
+.chip button{background:var(--navy);color:#fff;border:0;border-radius:999px;font-size:13px;padding:6px 14px}
+.chip button:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.steps{margin-top:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.step{background:var(--bg);padding:28px 24px}
+.step i{font-style:normal;font-family:var(--display);font-size:13px;font-weight:600;color:var(--sky);letter-spacing:.1em}
+.step h3{font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:-.02em;margin:10px 0 8px}
+.step p{font-size:15px;color:var(--grey)}
+@media(max-width:1000px){.needs{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
 .grid{max-width:1072px;margin:48px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .card{background:var(--bg);display:flex;flex-direction:column;transition:background .2s}
 .card:hover{background:#fafcfe}
