@@ -10,7 +10,7 @@
 <title>Sonora — Audífonos</title>
 <meta name="description" content="Sonora: audífonos Sony, Bose, Sennheiser, Apple, Bowers &amp; Wilkins y JBL en pesos chilenos, con precio neto, IVA y despacho a todo Chile.">
 <meta property="og:title" content="Sonora — Audífonos">
-<meta property="og:description" content="Elige tu gama: de lo esencial a lo más completo. Precios en CLP con IVA y despacho.">
+<meta property="og:description" content="Elige por uso: de lo esencial a lo más completo. Precios en CLP con IVA y despacho.">
 <meta property="og:type" content="website">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -120,6 +120,27 @@ button{font:inherit;cursor:pointer}
 .need b{font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
 .need span{font-size:14px;color:var(--grey)}
 .need em{font-style:normal;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-top:auto;padding-top:10px}
+.strip{padding:28px 0 0}.strip .wrap{display:flex;align-items:center;gap:20px}
+.strip h2{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);white-space:nowrap}
+.strip ul{list-style:none;display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;flex:1;padding:4px;margin:0}
+.strip ul::-webkit-scrollbar{display:none}
+.strip a{display:flex;align-items:center;gap:10px;padding:6px 16px 6px 6px;border:1px solid var(--line);border-radius:999px;white-space:nowrap;transition:border-color .2s,transform .3s cubic-bezier(.34,1.56,.64,1)}
+.strip a:hover{border-color:var(--sky);transform:translateY(-2px)}
+.strip a:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.strip img{width:40px;height:40px;object-fit:contain;background:var(--soft);border-radius:50%;mix-blend-mode:multiply}
+.strip b{display:block;font-family:var(--display);font-size:13px;font-weight:600;line-height:1.2}.strip small{font-size:12px;color:var(--steel)}
+.pick{margin-top:14px;max-width:1072px;display:flex;align-items:center;gap:18px;padding:14px 18px;border-radius:20px;background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}
+.pick[hidden]{display:none}
+.pick img{width:72px;height:72px;object-fit:contain;background:rgba(255,255,255,.92);border-radius:16px;flex:none}
+.pick em{font-style:normal;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#9fd2ea}
+.pick b{display:block;font-family:var(--display);font-size:19px;letter-spacing:-.02em;margin-top:2px}
+.pick p{font-size:14px;color:rgba(255,255,255,.8);margin-top:2px}
+.pick a{margin-left:auto;flex:none;background:#fff;color:var(--navy);font-size:14px;font-weight:600;border-radius:999px;padding:10px 20px}
+.pick a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.pickbadge{position:absolute;z-index:2;left:14px;top:14px;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--navy),var(--blue));border-radius:999px;padding:6px 14px;box-shadow:0 6px 14px -6px rgba(0,0,42,.6)}
+.pol{margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.pol:empty{display:none}
+.pol div{border-top:2px solid var(--navy);padding-top:14px}.pol b{font-family:var(--display);font-size:16px;display:block;margin-bottom:4px}.pol p{font-size:14px;color:var(--grey)}
+@media(max-width:900px){.pick{flex-wrap:wrap}.pick a{margin-left:0}.pol{grid-template-columns:1fr}.strip .wrap{flex-direction:column;align-items:flex-start;gap:8px}.strip ul{width:100%}}
 .chip{margin-top:28px;display:inline-flex;align-items:center;gap:12px;font-size:14px;background:var(--tint);border:1px solid var(--sky);border-radius:999px;padding:6px 8px 6px 16px}
 .chip[hidden]{display:none}
 .chip button{background:var(--navy);color:#fff;border:0;border-radius:999px;font-size:13px;padding:6px 14px}
@@ -131,9 +152,9 @@ button{font:inherit;cursor:pointer}
 .step p{font-size:15px;color:var(--grey)}
 @media(max-width:1000px){.needs{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.steps{grid-template-columns:1fr}}
-.grid{max-width:1072px;margin:48px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.card{background:var(--bg);display:flex;flex-direction:column;transition:background .2s}
-.card:hover{background:#fafcfe}
+.grid{max-width:1072px;margin:36px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.card{position:relative;background:var(--bg);display:flex;flex-direction:column;border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:box-shadow .3s,border-color .3s,transform .3s}
+.card:hover{border-color:var(--sky);box-shadow:0 18px 36px -22px rgba(0,0,42,.45);transform:translateY(-2px)}
 .pic{display:block;aspect-ratio:1;background:radial-gradient(circle at 50% 42%,#fff 0,var(--soft) 62%,var(--tint) 100%);position:relative;overflow:hidden}
 .pic img{position:absolute;left:10%;top:10%;width:80%;height:80%;object-fit:contain;mix-blend-mode:multiply;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .card:hover .pic img{transform:scale(1.06)}
@@ -269,7 +290,8 @@ body.co-open{overflow:hidden}
 .empty-co{max-width:480px;margin:0 auto;padding:96px 24px;text-align:center;color:var(--steel)}
 @media(max-width:900px){.co-grid{grid-template-columns:1fr;gap:32px}.co-sum{position:static;order:-1}.fgrid{grid-template-columns:1fr}}
 
-@media(max-width:1120px){.grid{margin-inline:24px}}
+@media(max-width:1120px){.grid{margin-inline:24px}.pick{margin-inline:24px}}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){
   .grid{grid-template-columns:1fr}.bar nav{display:none}
   .hero{min-height:max(820px,100svh)}
@@ -349,6 +371,8 @@ body.co-open{overflow:hidden}
  </div>
 </section>
 
+<section class="strip" aria-label="Los ocho modelos"><div class="wrap"><h2>Los 8 modelos</h2><ul id="strip"></ul></div></section>
+
 <section class="sec" id="guia"><div class="wrap">
  <p class="eyebrow">Paso 1 · Tu prioridad</p>
  <h2 class="title">¿Qué es lo que más te importa?</h2>
@@ -359,8 +383,9 @@ body.co-open{overflow:hidden}
 <section class="sec" id="tienda"><div class="wrap">
  <p class="eyebrow">Paso 2 · La colección</p>
  <h2 class="title">Ocho audífonos, de lo esencial a lo más completo.</h2>
- <p class="lead">Ordenados de mayor a menor precio. Cada uno lleva su gama para que sepas dónde está.</p>
+ <p class="lead">Ordenados de mayor a menor precio. Cada uno lleva una etiqueta que dice para quién es: Sin límite, Referencia, Equilibrio o Esencial.</p>
  <p class="chip" id="filtro" hidden></p>
+ <div class="pick" id="pick" hidden></div>
  <div class="grid" id="productos"></div>
 </div></section>
 
@@ -369,7 +394,7 @@ body.co-open{overflow:hidden}
  <h2 class="title">Lado a lado.</h2>
  <p class="lead">Cancelación, batería y peso de los ocho, en una sola tabla.</p>
  <div class="tablewrap"><table>
-  <thead><tr><th>Modelo</th><th>Gama</th><th id="th-precio">Precio neto</th><th>Cancelación</th><th>Batería</th><th>Peso</th></tr></thead>
+  <thead><tr><th>Modelo</th><th>Para quién</th><th id="th-precio">Precio neto</th><th>Cancelación</th><th>Batería</th><th>Peso</th></tr></thead>
   <tbody id="tabla"></tbody>
  </table></div>
  <p class="note" id="nota"></p>
@@ -379,6 +404,7 @@ body.co-open{overflow:hidden}
  <p class="eyebrow">Paso 4 · Compra sin sorpresas</p>
  <h2 class="title">Lo que pagas es lo que ves.</h2>
  <div class="steps" id="steps"></div>
+ <div class="pol" id="pol"></div>
 </div></section>
 
 <footer><div><span style="display:flex;align-items:center;gap:14px"><img src="logo-white.svg" alt="Sonora" height="26"> tienda local de demostración</span><span>Sin pasarela de pago · 127.0.0.1</span></div></footer>
@@ -448,9 +474,10 @@ const taxLine=p=>CONFIG.currency==="CLP"?`IVA ${ivaPct()} ${money(ivaOf(p))} · 
 let cart={}; try{cart=JSON.parse(localStorage.getItem("sonora-cart")||"{}")}catch(e){}
 const save=()=>{try{localStorage.setItem("sonora-cart",JSON.stringify(cart))}catch(e){}};
 
+let pickId=null;
 const drawGrid=list=>{$("#productos").innerHTML=list.map(p=>`
 <article class="card">
-  <a class="pic" href="producto-${p.id}.html" aria-label="Ver ${p.brand} ${p.name}"><img src="${p.img}" alt="${p.brand} ${p.name}"></a>
+  <a class="pic" href="producto-${p.id}.html" aria-label="Ver ${p.brand} ${p.name}"><img src="${p.img}" alt="${p.brand} ${p.name}">${p.id===pickId?'<span class="pickbadge">Sugerido</span>':""}</a>
   <div class="info">
     <span class="tier ${p.cls}">${p.tier}</span>
     <div><div class="brand">${p.brand}</div><h2 class="name"><a href="producto-${p.id}.html">${p.name}</a></h2></div>
@@ -463,17 +490,23 @@ const drawGrid=list=>{$("#productos").innerHTML=list.map(p=>`
 </article>`).join("")};drawGrid(PRODUCTS);
 /* guía: «¿qué te importa?» filtra la colección con datos reales de cada ficha */
 const NEEDS=[
- {t:"Aislarme del ruido",d:"Cancelación activa de ruido",f:p=>p.anc==="Activa"},
- {t:"Batería para días",d:"35 horas o más",f:p=>parseInt(p.bat)>=35},
- {t:"Que pesen poco",d:"Menos de 200 gramos",f:p=>parseInt(p.peso)<200},
- {t:"Gastar poco",d:"Hasta "+money(200000)+" con IVA",f:p=>priceOf(p)<=200000},
- {t:"Lo mejor, sin límite",d:"Sin límite y alta gama",f:p=>p.cls==="cima"||p.cls==="alta"}
+ {t:"Aislarme del ruido",d:"Cancelación activa de ruido",f:p=>p.anc==="Activa",pick:l=>l.reduce((a,b)=>priceOf(b)<priceOf(a)?b:a),why:p=>`El más económico con cancelación de ruido activa: ${money(priceOf(p))} con IVA.`},
+ {t:"Batería para días",d:"35 horas o más",f:p=>parseInt(p.bat)>=35,pick:l=>l.reduce((a,b)=>parseInt(b.bat)>parseInt(a.bat)?b:a),why:p=>`La mayor autonomía de la colección: hasta ${p.bat}.`},
+ {t:"Que pesen poco",d:"Menos de 200 gramos",f:p=>parseInt(p.peso)<200,pick:l=>l.reduce((a,b)=>parseInt(b.peso)<parseInt(a.peso)?b:a),why:p=>`El más liviano de la colección: ${p.peso}.`},
+ {t:"Gastar poco",d:"Hasta "+money(200000)+" con IVA",f:p=>priceOf(p)<=200000,pick:l=>l.reduce((a,b)=>priceOf(b)<priceOf(a)?b:a),why:p=>`El de menor precio de la colección: ${money(priceOf(p))} con IVA.`},
+ {t:"Lo mejor, sin límite",d:"Sin límite y Referencia",f:p=>p.cls==="cima"||p.cls==="alta",pick:l=>l.reduce((a,b)=>b.price>a.price?b:a),why:p=>`El de mayor precio de lista de la colección.`}
 ];
+const safe=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>"&#"+c.charCodeAt(0)+";");
+$("#strip").innerHTML=PRODUCTS.map(p=>`<li><a href="producto-${p.id}.html"><img src="${p.img}" alt="" loading="lazy"><span><b>${safe(p.brand)} ${safe(p.name)}</b><small>${money(priceOf(p))} con IVA</small></span></a></li>`).join("");
+const POL=(SONORA_BASE.policies||{});
+$("#pol").innerHTML=[["garantia","Garantía"],["devoluciones","Cambios y devoluciones"],["entrega","Plazo de entrega"]].filter(x=>POL[x[0]]).map(x=>`<div><b>${x[1]}</b><p>${safe(POL[x[0]])}</p></div>`).join("");
 $("#needs").innerHTML=NEEDS.map((n,i)=>{const c=PRODUCTS.filter(n.f).length;return `<button class="need" type="button" data-need="${i}"><b>${n.t}</b><span>${n.d}</span><em>${c} ${c===1?"modelo":"modelos"} →</em></button>`}).join("");
 function setFilter(i){
   const box=$("#filtro");
-  if(i==null){drawGrid(PRODUCTS);box.hidden=true;return}
-  const n=NEEDS[i],list=PRODUCTS.filter(n.f);drawGrid(list);
+  const pk=$("#pick");
+  if(i==null){pickId=null;drawGrid(PRODUCTS);box.hidden=true;pk.hidden=true;return}
+  const n=NEEDS[i],list=PRODUCTS.filter(n.f),best=n.pick(list);pickId=best.id;drawGrid(list);
+  pk.innerHTML=`<img src="${best.img}" alt=""><div><em>Nuestra sugerencia</em><b>${safe(best.brand)} ${safe(best.name)}</b><p>${n.why(best)}</p></div><a href="producto-${best.id}.html">Ver ficha</a>`;pk.hidden=false;
   box.innerHTML=`Mostrando ${list.length} de ${PRODUCTS.length}: <b>${n.t}</b> <button type="button" data-clear="1">Ver todos</button>`;box.hidden=false;
   $("#tienda").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});
 }
