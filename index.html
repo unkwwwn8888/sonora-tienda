@@ -460,7 +460,25 @@ const drawGrid=list=>{$("#productos").innerHTML=list.map(p=>`
     <button class="add glass tint" data-id="${p.id}">Agregar</button></div>
     <p class="taxline">${taxLine(p)}</p>
   </div>
-</article>`).join("");
+</article>`).join("")};drawGrid(PRODUCTS);
+/* guía: «¿qué te importa?» filtra la colección con datos reales de cada ficha */
+const NEEDS=[
+ {t:"Aislarme del ruido",d:"Cancelación activa de ruido",f:p=>p.anc==="Activa"},
+ {t:"Batería para días",d:"35 horas o más",f:p=>parseInt(p.bat)>=35},
+ {t:"Que pesen poco",d:"Menos de 200 gramos",f:p=>parseInt(p.peso)<200},
+ {t:"Gastar poco",d:"Hasta "+money(200000)+" con IVA",f:p=>priceOf(p)<=200000},
+ {t:"Lo mejor, sin límite",d:"Gama top y alta gama",f:p=>p.cls==="cima"||p.cls==="alta"}
+];
+$("#needs").innerHTML=NEEDS.map((n,i)=>{const c=PRODUCTS.filter(n.f).length;return `<button class="need" type="button" data-need="${i}"><b>${n.t}</b><span>${n.d}</span><em>${c} ${c===1?"modelo":"modelos"} →</em></button>`}).join("");
+function setFilter(i){
+  const box=$("#filtro");
+  if(i==null){drawGrid(PRODUCTS);box.hidden=true;return}
+  const n=NEEDS[i],list=PRODUCTS.filter(n.f);drawGrid(list);
+  box.innerHTML=`Mostrando ${list.length} de ${PRODUCTS.length}: <b>${n.t}</b> <button type="button" data-clear="1">Ver todos</button>`;box.hidden=false;
+  $("#tienda").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});
+}
+$("#needs").addEventListener("click",e=>{const b=e.target.closest("[data-need]");if(b)setFilter(+b.dataset.need)});
+$("#filtro").addEventListener("click",e=>{if(e.target.dataset.clear)setFilter(null)});
 $("#tabla").innerHTML=PRODUCTS.map(p=>`<tr><td>${p.brand} ${p.name}</td><td><span class="tier ${p.cls}">${p.tier}</span></td><td class="pc">${money(netOf(p))}<small>${taxLine(p)}</small></td><td>${p.anc}</td><td>${p.bat}</td><td>${p.peso}</td></tr>`).join("");
 
 function render(){
