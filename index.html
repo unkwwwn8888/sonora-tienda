@@ -150,7 +150,7 @@ button{font:inherit;cursor:pointer}
 .step i{font-style:normal;font-family:var(--display);font-size:13px;font-weight:600;color:var(--sky);letter-spacing:.1em}
 .step h3{font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:-.02em;margin:10px 0 8px}
 .step p{font-size:15px;color:var(--grey)}
-@media(max-width:1000px){.needs{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1000px){.needs{grid-template-columns:repeat(2,1fr)}.need:last-child:nth-child(odd){grid-column:1/-1}.steps{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.steps{grid-template-columns:1fr}}
 .grid{max-width:1072px;margin:36px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
 .card{position:relative;background:var(--bg);display:flex;flex-direction:column;border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:box-shadow .3s,border-color .3s,transform .3s}
@@ -497,7 +497,7 @@ const NEEDS=[
  {t:"Lo mejor, sin límite",d:"Sin límite y Referencia",f:p=>p.cls==="cima"||p.cls==="alta",pick:l=>l.reduce((a,b)=>b.price>a.price?b:a),why:p=>`El de mayor precio de lista de la colección.`}
 ];
 const safe=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>"&#"+c.charCodeAt(0)+";");
-$("#strip").innerHTML=PRODUCTS.map(p=>`<li><a href="producto-${p.id}.html"><img src="${p.img}" alt="" loading="lazy"><span><b>${safe(p.brand)} ${safe(p.name)}</b><small>${money(priceOf(p))} con IVA</small></span></a></li>`).join("");
+$("#strip").innerHTML=PRODUCTS.map(p=>`<li><a href="producto-${p.id}.html"><img src="${p.img}" alt=""><span><b>${safe(p.brand)} ${safe(p.name)}</b><small>${money(priceOf(p))} con IVA</small></span></a></li>`).join("");
 const POL=(SONORA_BASE.policies||{});
 $("#pol").innerHTML=[["garantia","Garantía"],["devoluciones","Cambios y devoluciones"],["entrega","Plazo de entrega"]].filter(x=>POL[x[0]]).map(x=>`<div><b>${x[1]}</b><p>${safe(POL[x[0]])}</p></div>`).join("");
 $("#needs").innerHTML=NEEDS.map((n,i)=>{const c=PRODUCTS.filter(n.f).length;return `<button class="need" type="button" data-need="${i}"><b>${n.t}</b><span>${n.d}</span><em>${c} ${c===1?"modelo":"modelos"} →</em></button>`}).join("");
