@@ -448,7 +448,7 @@ const taxLine=p=>CONFIG.currency==="CLP"?`IVA ${ivaPct()} ${money(ivaOf(p))} · 
 let cart={}; try{cart=JSON.parse(localStorage.getItem("sonora-cart")||"{}")}catch(e){}
 const save=()=>{try{localStorage.setItem("sonora-cart",JSON.stringify(cart))}catch(e){}};
 
-$("#productos").innerHTML=PRODUCTS.map(p=>`
+const drawGrid=list=>{$("#productos").innerHTML=list.map(p=>`
 <article class="card">
   <a class="pic" href="producto-${p.id}.html" aria-label="Ver ${p.brand} ${p.name}"><img src="${p.img}" alt="${p.brand} ${p.name}"></a>
   <div class="info">
