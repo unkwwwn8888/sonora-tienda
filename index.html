@@ -304,7 +304,7 @@ body.co-open{overflow:hidden}
      <p class="sub">Cancelación de ruido activa</p>
      <div class="hprod"><h3>Sony WH-1000XM5</h3><p>Alta gama · hasta 30 h de batería</p>
       <div class="hprice" data-hnet="xm5"></div><div class="htot" data-htot="xm5"></div></div>
-     <a class="cta glass" href="#guia">Encuentra el tuyo
+     <a class="cta glass" href="#guia" data-hneed="0">Ver los que aíslan del ruido
       <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6"/></svg></a>
     </div>
     <div class="pic2"><img class="phones" src="img/xm5-hd.webp" alt="Sony WH-1000XM5"></div>
@@ -318,7 +318,7 @@ body.co-open{overflow:hidden}
      <p class="sub">ANC liviano, solo 192 gramos</p>
      <div class="hprod"><h3>Sony WH-CH720N</h3><p>Gama media · hasta 35 h de batería</p>
       <div class="hprice" data-hnet="ch720n"></div><div class="htot" data-htot="ch720n"></div></div>
-     <a class="cta glass" href="#guia">Encuentra el tuyo
+     <a class="cta glass" href="#guia" data-hneed="2">Ver los más livianos
       <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6"/></svg></a>
     </div>
     <div class="pic2"><img class="phones" src="img/ch720n-hd.webp" alt="Sony WH-CH720N"></div>
@@ -332,7 +332,7 @@ body.co-open{overflow:hidden}
      <p class="sub">40 horas de batería</p>
      <div class="hprod"><h3>JBL Tune 510BT</h3><p>Gama baja · hasta 40 h de batería</p>
       <div class="hprice" data-hnet="t510"></div><div class="htot" data-htot="t510"></div></div>
-     <a class="cta glass" href="#guia">Encuentra el tuyo
+     <a class="cta glass" href="#guia" data-hneed="3">Ver los más económicos
       <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6"/></svg></a>
     </div>
     <div class="pic2"><img class="phones" src="img/hero-t510.png" alt="JBL Tune 510BT"></div>
@@ -477,6 +477,7 @@ function setFilter(i){
   box.innerHTML=`Mostrando ${list.length} de ${PRODUCTS.length}: <b>${n.t}</b> <button type="button" data-clear="1">Ver todos</button>`;box.hidden=false;
   $("#tienda").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});
 }
+document.querySelectorAll("[data-hneed]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();setFilter(+a.dataset.hneed)}));
 $("#needs").addEventListener("click",e=>{const b=e.target.closest("[data-need]");if(b)setFilter(+b.dataset.need)});
 $("#filtro").addEventListener("click",e=>{if(e.target.dataset.clear)setFilter(null)});
 $("#tabla").innerHTML=PRODUCTS.map(p=>`<tr><td>${p.brand} ${p.name}</td><td><span class="tier ${p.cls}">${p.tier}</span></td><td class="pc">${money(netOf(p))}<small>${taxLine(p)}</small></td><td>${p.anc}</td><td>${p.bat}</td><td>${p.peso}</td></tr>`).join("");
