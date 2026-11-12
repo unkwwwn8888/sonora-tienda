@@ -154,9 +154,9 @@ details[open] summary::after{transform:rotate(45deg)}
 
 <div class="chips" id="chips" role="group" aria-label="Filtrar por gama">
  <button class="chip" aria-pressed="true" data-f="todos">Todos</button>
- <button class="chip" aria-pressed="false" data-f="alta">Alta gama</button>
- <button class="chip" aria-pressed="false" data-f="media">Gama media</button>
- <button class="chip" aria-pressed="false" data-f="baja">Gama baja</button>
+ <button class="chip" aria-pressed="false" data-f="alta">Referencia</button>
+ <button class="chip" aria-pressed="false" data-f="media">Equilibrio</button>
+ <button class="chip" aria-pressed="false" data-f="baja">Esencial</button>
 </div>
 
 <section class="sec" id="tienda"><h2>Elige tu gama</h2><div class="list" id="productos"></div></section>
@@ -185,21 +185,21 @@ details[open] summary::after{transform:rotate(45deg)}
 <script>
 /* Mismos datos y reglas de precio que index.html. El carrito se comparte por localStorage ("sonora-cart"). */
 const PRODUCTS=[
- {id:"px8",tier:"Gama top",cls:"cima",brand:"Bowers & Wilkins",name:"Px8",tag:"Audio de estudio hecho audífono: acabado en cuero y aluminio, cancelación de ruido y conexión por cable USB-C.",price:699.0,img:"img/px8.webp",anc:"Activa",bat:"30 h",peso:"320 g",
+ {id:"px8",tier:"Sin límite",cls:"cima",brand:"Bowers & Wilkins",name:"Px8",tag:"Audio de estudio hecho audífono: acabado en cuero y aluminio, cancelación de ruido y conexión por cable USB-C.",price:699.0,img:"img/px8.webp",anc:"Activa",bat:"30 h",peso:"320 g",
   specs:[["Tipo","Over-ear inalámbrico"],["Cancelación de ruido","Activa (ANC)"],["Batería","Hasta 30 h"],["Peso","320 g"],["Conexión","Bluetooth y cable USB-C"]]},
- {id:"airpodsmax",tier:"Gama top",cls:"cima",brand:"Apple",name:"AirPods Max",tag:"Cancelación de ruido y audio espacial en un cuerpo de aluminio, pensado para el ecosistema Apple.",price:549.0,img:"img/airpodsmax.webp",anc:"Activa",bat:"20 h",peso:"386 g",
+ {id:"airpodsmax",tier:"Sin límite",cls:"cima",brand:"Apple",name:"AirPods Max",tag:"Cancelación de ruido y audio espacial en un cuerpo de aluminio, pensado para el ecosistema Apple.",price:549.0,img:"img/airpodsmax.webp",anc:"Activa",bat:"20 h",peso:"386 g",
   specs:[["Tipo","Over-ear inalámbrico"],["Cancelación de ruido","Activa (ANC)"],["Batería","Hasta 20 h"],["Peso","386 g"],["Audio espacial","Sí"]]},
- {id:"xm6",tier:"Alta gama",cls:"alta",brand:"Sony",name:"WH-1000XM6",tag:"El nuevo tope de Sony: cancelación de ruido refinada y 40 horas sin ANC.",price:449.99,img:"img/xm6.webp",anc:"Activa",bat:"30 h",peso:"254 g",
+ {id:"xm6",tier:"Referencia",cls:"alta",brand:"Sony",name:"WH-1000XM6",tag:"El nuevo tope de Sony: cancelación de ruido refinada y 40 horas sin ANC.",price:449.99,img:"img/xm6.webp",anc:"Activa",bat:"30 h",peso:"254 g",
   specs:[["Tipo","Over-ear inalámbrico"],["Cancelación de ruido","Activa (ANC)"],["Batería","Hasta 30 h (40 h sin ANC)"],["Peso","254 g"],["Carga rápida","3 h de uso con 3 min"]]},
- {id:"qcultra",tier:"Alta gama",cls:"alta",brand:"Bose",name:"QuietComfort Ultra",tag:"Cancelación de ruido de referencia y audio inmersivo, con la comodidad por la que Bose es conocida.",price:429.0,img:"img/qcultra.webp",anc:"Activa",bat:"24 h",peso:"250 g",
+ {id:"qcultra",tier:"Referencia",cls:"alta",brand:"Bose",name:"QuietComfort Ultra",tag:"Cancelación de ruido de referencia y audio inmersivo, con la comodidad por la que Bose es conocida.",price:429.0,img:"img/qcultra.webp",anc:"Activa",bat:"24 h",peso:"250 g",
   specs:[["Tipo","Over-ear inalámbrico"],["Cancelación de ruido","Activa (ANC)"],["Batería","Hasta 24 h"],["Peso","250 g"],["Audio inmersivo","Sí"]]},
- {id:"momentum4",tier:"Alta gama",cls:"alta",brand:"Sennheiser",name:"Momentum 4 Wireless",tag:"Sonido Sennheiser y hasta 60 horas de batería con cancelación de ruido activada.",price:379.0,img:"img/momentum4.webp",anc:"Activa",bat:"60 h",peso:"293 g",
+ {id:"momentum4",tier:"Referencia",cls:"alta",brand:"Sennheiser",name:"Momentum 4 Wireless",tag:"Sonido Sennheiser y hasta 60 horas de batería con cancelación de ruido activada.",price:379.0,img:"img/momentum4.webp",anc:"Activa",bat:"60 h",peso:"293 g",
   specs:[["Tipo","Over-ear inalámbrico"],["Cancelación de ruido","Activa (ANC)"],["Batería","Hasta 60 h"],["Peso","293 g"],["Fabricante","Sennheiser"]]},
- {id:"xm5",tier:"Alta gama",cls:"alta",brand:"Sony",name:"WH-1000XM5",tag:"Cancelación de ruido líder de la marca, para quien no quiere ceder en nada.",price:399.99,img:"img/xm5-hd.webp",anc:"Activa",bat:"30 h",peso:"250 g",
+ {id:"xm5",tier:"Referencia",cls:"alta",brand:"Sony",name:"WH-1000XM5",tag:"Cancelación de ruido líder de la marca, para quien no quiere ceder en nada.",price:399.99,img:"img/xm5-hd.webp",anc:"Activa",bat:"30 h",peso:"250 g",
   specs:[["Tipo","Over-ear inalámbrico"],["Cancelación de ruido","Activa (ANC)"],["Batería","Hasta 30 h"],["Peso","250 g"],["Códec destacado","LDAC"]]},
- {id:"ch720n",tier:"Gama media",cls:"media",brand:"Sony",name:"WH-CH720N",tag:"Cancelación de ruido en un cuerpo liviano y a menos de la mitad del precio.",price:149.99,img:"img/ch720n-hd.webp",anc:"Activa",bat:"35 h",peso:"192 g",
+ {id:"ch720n",tier:"Equilibrio",cls:"media",brand:"Sony",name:"WH-CH720N",tag:"Cancelación de ruido en un cuerpo liviano y a menos de la mitad del precio.",price:149.99,img:"img/ch720n-hd.webp",anc:"Activa",bat:"35 h",peso:"192 g",
   specs:[["Tipo","Over-ear inalámbrico"],["Cancelación de ruido","Activa (ANC)"],["Batería","Hasta 35 h"],["Peso","192 g"],["Multipunto","Sí"]]},
- {id:"t510",tier:"Gama baja",cls:"baja",brand:"JBL",name:"Tune 510BT",tag:"Sonido JBL, plegable y 40 horas de batería: la opción más accesible.",price:49.95,img:"img/hero-t510.png",anc:"No",bat:"40 h",peso:"160 g",
+ {id:"t510",tier:"Esencial",cls:"baja",brand:"JBL",name:"Tune 510BT",tag:"Sonido JBL, plegable y 40 horas de batería: la opción más accesible.",price:49.95,img:"img/hero-t510.png",anc:"No",bat:"40 h",peso:"160 g",
   specs:[["Tipo","On-ear inalámbrico"],["Cancelación de ruido","No"],["Batería","Hasta 40 h"],["Peso","160 g"],["Bluetooth","5.0"]]}
 ];
 const CONFIG=SONORA_BASE;
