@@ -150,6 +150,12 @@ button{font:inherit;cursor:pointer}
 .bgroup h3{font-family:var(--display);font-size:clamp(24px,3vw,32px);font-weight:700;letter-spacing:-.035em}
 .bgroup>header span{font-size:14px;color:var(--steel)}
 .bgroup .grid{margin:0;max-width:none}
+.bgroup.solo .grid{grid-template-columns:1fr}
+.bgroup.solo .card{flex-direction:row}
+.bgroup.solo .pic{aspect-ratio:auto;width:40%;min-height:360px;flex:none}
+.bgroup.solo .info{justify-content:center;padding:36px 44px}
+.bgroup.solo ul.specs{max-width:520px}
+@media(max-width:760px){.bgroup.solo .card{flex-direction:column}.bgroup.solo .pic{width:auto;aspect-ratio:1;min-height:0}.bgroup.solo .info{padding:28px}}
 .chip{margin-top:28px;display:inline-flex;align-items:center;gap:12px;font-size:14px;background:var(--tint);border:1px solid var(--sky);border-radius:999px;padding:6px 8px 6px 16px}
 .chip[hidden]{display:none}
 .chip button{background:var(--navy);color:#fff;border:0;border-radius:999px;font-size:13px;padding:6px 14px}
