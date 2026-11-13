@@ -141,6 +141,15 @@ button{font:inherit;cursor:pointer}
 .pol{margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.pol:empty{display:none}
 .pol div{border-top:2px solid var(--navy);padding-top:14px}.pol b{font-family:var(--display);font-size:16px;display:block;margin-bottom:4px}.pol p{font-size:14px;color:var(--grey)}
 @media(max-width:900px){.pick{flex-wrap:wrap}.pick a{margin-left:0}.pol{grid-template-columns:1fr}.strip .wrap{flex-direction:column;align-items:flex-start;gap:8px}.strip ul{width:100%}}
+.seg{margin-top:28px;display:inline-flex;padding:4px;border:1px solid var(--line);border-radius:999px;gap:4px}
+.seg button{border:0;background:none;font-size:14px;font-weight:500;color:var(--steel);padding:8px 18px;border-radius:999px;transition:background .2s,color .2s}
+.seg button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.seg button:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.groups{max-width:1072px;margin:36px auto 0;display:flex;flex-direction:column;gap:56px}
+.bgroup>header{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 16px;padding-bottom:12px;border-bottom:2px solid var(--navy);margin-bottom:20px}
+.bgroup h3{font-family:var(--display);font-size:clamp(24px,3vw,32px);font-weight:700;letter-spacing:-.035em}
+.bgroup>header span{font-size:14px;color:var(--steel)}
+.bgroup .grid{margin:0;max-width:none}
 .chip{margin-top:28px;display:inline-flex;align-items:center;gap:12px;font-size:14px;background:var(--tint);border:1px solid var(--sky);border-radius:999px;padding:6px 8px 6px 16px}
 .chip[hidden]{display:none}
 .chip button{background:var(--navy);color:#fff;border:0;border-radius:999px;font-size:13px;padding:6px 14px}
@@ -290,7 +299,7 @@ body.co-open{overflow:hidden}
 .empty-co{max-width:480px;margin:0 auto;padding:96px 24px;text-align:center;color:var(--steel)}
 @media(max-width:900px){.co-grid{grid-template-columns:1fr;gap:32px}.co-sum{position:static;order:-1}.fgrid{grid-template-columns:1fr}}
 
-@media(max-width:1120px){.grid{margin-inline:24px}.pick{margin-inline:24px}}
+@media(max-width:1120px){.grid{margin-inline:24px}.groups{margin-inline:24px}.pick{margin-inline:24px}}
 @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){
   .grid{grid-template-columns:1fr}.bar nav{display:none}
@@ -383,7 +392,8 @@ body.co-open{overflow:hidden}
 <section class="sec" id="tienda"><div class="wrap">
  <p class="eyebrow">Paso 2 · La colección</p>
  <h2 class="title">Ocho audífonos, de lo esencial a lo más completo.</h2>
- <p class="lead">Ordenados de mayor a menor precio. Cada uno lleva una etiqueta que dice para quién es: Sin límite, Referencia, Equilibrio o Esencial.</p>
+ <p class="lead">Agrupados por marca, con el más caro primero dentro de cada una. Cada audífono lleva una etiqueta que dice para quién es: Sin límite, Referencia, Equilibrio o Esencial.</p>
+ <div class="seg" role="group" aria-label="Cómo agrupar la colección"><button type="button" data-mode="marca" aria-pressed="true">Por marca</button><button type="button" data-mode="precio" aria-pressed="false">Por precio</button></div>
  <p class="chip" id="filtro" hidden></p>
  <div class="pick" id="pick" hidden></div>
  <div class="grid" id="productos"></div>
@@ -475,7 +485,7 @@ let cart={}; try{cart=JSON.parse(localStorage.getItem("sonora-cart")||"{}")}catc
 const save=()=>{try{localStorage.setItem("sonora-cart",JSON.stringify(cart))}catch(e){}};
 
 let pickId=null;
-const drawGrid=list=>{$("#productos").innerHTML=list.map(p=>`
+const cardHTML=p=>`
 <article class="card">
   <a class="pic" href="producto-${p.id}.html" aria-label="Ver ${p.brand} ${p.name}"><img src="${p.img}" alt="${p.brand} ${p.name}">${p.id===pickId?'<span class="pickbadge">Sugerido</span>':""}</a>
   <div class="info">
@@ -487,7 +497,23 @@ const drawGrid=list=>{$("#productos").innerHTML=list.map(p=>`
     <button class="add glass tint" data-id="${p.id}">Agregar</button></div>
     <p class="taxline">${taxLine(p)}</p>
   </div>
-</article>`).join("")};drawGrid(PRODUCTS);
+</article>`;
+let mode="marca",curList=PRODUCTS;
+const drawGrid=list=>{
+  curList=list;const box=$("#productos");
+  if(mode==="precio"){box.className="grid";box.innerHTML=list.map(cardHTML).join("");return}
+  const by={};list.forEach(p=>{(by[p.brand]=by[p.brand]||[]).push(p)});
+  const brands=Object.keys(by).sort((a,b)=>Math.max(...by[b].map(x=>x.price))-Math.max(...by[a].map(x=>x.price)));
+  box.className="groups";
+  box.innerHTML=brands.map(b=>{const l=by[b].slice().sort((x,y)=>y.price-x.price);
+    return `<section class="bgroup" aria-label="${b.replace(/&/g,"&amp;")}"><header><h3>${b.replace(/&/g,"&amp;")}</h3><span>${l.length} ${l.length===1?"modelo":"modelos"} · desde ${money(priceOf(l[l.length-1]))} con IVA</span></header><div class="grid">${l.map(cardHTML).join("")}</div></section>`}).join("");
+};
+drawGrid(PRODUCTS);
+document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>{
+  mode=b.dataset.mode;
+  document.querySelectorAll("[data-mode]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));
+  drawGrid(curList);
+}));
 /* guía: «¿qué te importa?» filtra la colección con datos reales de cada ficha */
 const NEEDS=[
  {t:"Aislarme del ruido",d:"Cancelación activa de ruido",f:p=>p.anc==="Activa",pick:l=>l.reduce((a,b)=>priceOf(b)<priceOf(a)?b:a),why:p=>`El más económico con cancelación de ruido activa: ${money(priceOf(p))} con IVA.`},
