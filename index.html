@@ -512,7 +512,7 @@ const drawGrid=list=>{
   const brands=Object.keys(by).sort((a,b)=>Math.max(...by[b].map(x=>x.price))-Math.max(...by[a].map(x=>x.price)));
   box.className="groups";
   box.innerHTML=brands.map(b=>{const l=by[b].slice().sort((x,y)=>y.price-x.price);
-    return `<section class="bgroup" aria-label="${b.replace(/&/g,"&amp;")}"><header><h3>${b.replace(/&/g,"&amp;")}</h3><span>${l.length} ${l.length===1?"modelo":"modelos"} · desde ${money(priceOf(l[l.length-1]))} con IVA</span></header><div class="grid">${l.map(cardHTML).join("")}</div></section>`}).join("");
+    return `<section class="bgroup${l.length===1?" solo":""}" aria-label="${b.replace(/&/g,"&amp;")}"><header><h3>${b.replace(/&/g,"&amp;")}</h3><span>${l.length} ${l.length===1?"modelo":"modelos"} · desde ${money(priceOf(l[l.length-1]))} con IVA</span></header><div class="grid">${l.map(cardHTML).join("")}</div></section>`}).join("");
 };
 drawGrid(PRODUCTS);
 document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>{
